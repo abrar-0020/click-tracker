@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stats for {{ code }}</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        .reset-button { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Stats for <code>{{ code }}</code></h2>
+    <p><strong>URL:</strong> {{ data.url }}</p>
+    <p><strong>Total Clicks:</strong> {{ data.clicks }}</p>
+
+    <form action="/reset/{{ code }}" method="post" class="reset-button">
+        <button type="submit">Reset Clicks</button>
+    </form>
+
+    <table>
+        <tr><th>#</th><th>IP</th><th>Time</th></tr>
+        {% for entry in data.log %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ entry.ip }}</td>
+            <td>{{ entry.time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
