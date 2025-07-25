@@ -56,10 +56,6 @@ python app_site.py
 # Runs on http://localhost:5002 (automatically shows stats for drive123)
 ```
 
-## 🌐 Access URLs
-
-- **Short URL (GDrive link):** [http://localhost:5001](http://localhost:5001)
-- **Stats Page:** [http://localhost:5002](http://localhost:5002)
 
 ## 🔄 Reset Clicks
 
