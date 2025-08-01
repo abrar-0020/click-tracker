@@ -1,84 +1,109 @@
-# 🔗 Click Tracker - Flask Project
+# 📊 Click Tracker
 
-A simple URL click tracker built with Flask. This project allows you to create short URLs and track the number of clicks along with timestamps and IP addresses. Includes separate apps for tracking Google Drive links and a personal website.
+A simple **Flask-based Click Tracker** that lets you:
+- Shorten any URL
+- Track how many times it was clicked
+- View IP address and timestamp for every click
+- Reset click count anytime
+
+---
 
 ## 📂 Project Structure
-
-```
+``
 click-tracker/
 │
-├── app_drive.py         # Tracks clicks on GDrive short link (port 5000)
-├── app_site.py          # Displays stats and reset button for GDrive link (port 5002)
+├── app_drive.py         # Short link & tracker for any link (Drive, YouTube, etc.)
+├── app_site.py          # Displays stats directly with reset button
 ├── templates/
-│   └── stats.html       # Shared HTML template to display click stats
-├── clicks_drive.json    # Automatically created and updated with each click
-├── requirements.txt     # Python dependencies
-└── README.md            # This file
-```
+│   └── stats.html       # Template to display click statistics
+├── clicks_drive.json    # Auto-generated: stores all click logs
+├── requirements.txt     # Python dependencies (Flask, pytz)
+└── README.md            # Project documentation
+``
 
-## 🚀 Features
+---
 
-- ✅ Click counting with timestamp
-- ✅ Tracks IP address of the user
-- ✅ Reset click count with a single click
-- ✅ Displays stats in a clean HTML table
-- ✅ Supports multiple short codes (e.g., `drive123`)
-- ✅ Works locally on different ports for separation
+## 🚀 How It Works
+1. The app uses a short code (e.g., `drive123`) linked to your URL.
+2. Visiting `http://localhost:5001/drive123` redirects to the original link and logs the click.
+3. Statistics can be viewed at `http://localhost:5001/stats/drive123`.
+4. For the website tracker (`app_site.py`), just open `http://localhost:5002` to view stats.
 
-## 🧑‍💻 Setup Instructions
+---
 
-### 1. Clone the Repository
+## 🖥️ Local Usage
+> This app runs locally, meaning **only you can access the short link and stats unless you deploy it online**.
 
-```bash
-git clone https://github.com/abrar-0020/click-tracker.git
-cd click-tracker
-```
+### 🔹 **Steps to Run Locally**
+1. Clone the repository:
+   ``bash
+   git clone https://github.com/abrar-0020/click-tracker.git
+   cd click-tracker
+   ```
 
-### 2. Install Dependencies
+2. Install dependencies:
+   ``bash
+   pip install -r requirements.txt
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+3. Run the apps:
+   ``bash
+   python app_drive.py      # Runs the tracker for links on port 5001
+   python app_site.py       # Runs the stats UI with reset on port 5002
+   ```
 
-### 3. Run the Apps
+4. Open in browser:
+   - Redirect & count: `http://localhost:5001/drive123`
+   - Stats page: `http://localhost:5001/stats/drive123`
+   - Website stats UI: `http://localhost:5002`
 
-**Start the click tracker (GDrive link):**
+---
 
-```bash
-python app_drive.py
-# Runs on http://localhost:5001/
-```
+## 🌍 Sharing with Others
+- The `localhost` URLs **only work on your machine**.  
+- To share, you must **deploy it online** (e.g., Fly.io, Render, Replit).  
+- After deployment, you'll get a public URL (e.g., `https://yourapp.fly.dev/drive123`) that anyone can use.
 
-**Start the stats viewer:**
+---
 
-```bash
-python app_site.py
-# Runs on http://localhost:5002 (automatically shows stats for drive123)
-```
+## 🛠 Features
+- ✅ Works with any URL
+- ✅ Tracks total clicks, IP & timestamp
+- ✅ Reset button to clear stats
+- ✅ JSON file stores click data persistently
 
+---
 
-## 🔄 Reset Clicks
+## ✏️ How to Add Your Own Links
+1. Open `app_drive.py`.
+2. Inside the `db` dictionary, add a new short code:
+   ```python
+   db = {
+       "drive123": {
+           "url": "https://yourlink.com",
+           "clicks": 0,
+           "log": []
+       },
+       "myvideo": {
+           "url": "https://youtube.com/yourvideo",
+           "clicks": 0,
+           "log": []
+       }
+   }
+   ```
+3. Restart the app, and access via `http://localhost:5001/myvideo`.
 
-Click the **Reset** button on the stats page to reset the click count to 0. This action also clears the click log from `clicks_drive.json`.
+---
 
-## 📋 Requirements
+## 📌 Limitations
+- Works locally unless deployed online.
+- JSON storage is local and persistent until manually deleted or reset.
 
-All Python dependencies are listed in `requirements.txt`:
+---
 
-```text
-Flask
-pytz
-```
+## 📄 License & Copyright
+© 2025 **Abrar-0020**  
+Licensed under the MIT License.  
+Feel free to use and modify, but please give credit.
 
-## 🛡️ License
-
-```
-© 2025 Abrar | abrar-0020
-
-This project is open-source and free to use for personal and educational purposes.
-Do not use for unethical data tracking or malicious purposes.
-```
-
-## 💡 Author
-
-- GitHub: [abrar-0020](https://github.com/abrar-0020)
+---
