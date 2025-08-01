@@ -9,7 +9,7 @@ A simple **Flask-based Click Tracker** that lets you:
 ---
 
 ## 📂 Project Structure
-``
+```
 click-tracker/
 │
 ├── app_drive.py         # Short link & tracker for any link (Drive, YouTube, etc.)
@@ -19,7 +19,7 @@ click-tracker/
 ├── clicks_drive.json    # Auto-generated: stores all click logs
 ├── requirements.txt     # Python dependencies (Flask, pytz)
 └── README.md            # Project documentation
-``
+```
 
 ---
 
@@ -36,18 +36,18 @@ click-tracker/
 
 ### 🔹 **Steps to Run Locally**
 1. Clone the repository:
-   ``bash
+   ```bash
    git clone https://github.com/abrar-0020/click-tracker.git
    cd click-tracker
    ```
 
 2. Install dependencies:
-   ``bash
+   ```bash
    pip install -r requirements.txt
    ```
 
 3. Run the apps:
-   ``bash
+   ```bash
    python app_drive.py      # Runs the tracker for links on port 5001
    python app_site.py       # Runs the stats UI with reset on port 5002
    ```
